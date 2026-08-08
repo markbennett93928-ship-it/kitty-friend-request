@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kitty的小问题</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#fff7fb;color:#4b3b45;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:430px;margin:auto;padding:20px 16px}
+.card{background:#fff;border-radius:24px;padding:20px;box-shadow:0 10px 30px #f1dce8}
+h1,h2{text-align:center}
+p{text-align:center;color:#8b7380;line-height:1.6}
+img{width:100%;aspect-ratio:1;border-radius:20px;object-fit:cover;background:#faf0f5}
+button{width:100%;border:0;border-radius:18px;padding:15px;margin-top:10px;font-size:16px;background:#ffabc9;color:white}
+.alt{background:white;color:#6b5360;border:1px solid #efd9e4}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<div id="page1">
+<img id="cat" src="images/kitty01.jpg" onerror="this.style.display='none'">
+<h1>🐱 一个小问题</h1>
+<p>帮小猫选一个答案就好～</p>
+<button onclick="go(2)">开始</button>
+</div>
+
+<div id="page2" class="hide">
+<h2>以后还可以做普通朋友吗？</h2>
+<button onclick="answer('开心 Kitty','images/kitty02.jpg')">可以试试 🌸</button>
+<button class="alt" onclick="answer('观察 Kitty','images/kitty03.jpg')">再看看 👀</button>
+<button class="alt" onclick="answer('哭哭 Kitty','images/kitty04.jpg')">暂时不想 💧</button>
+</div>
+
+<div id="page3" class="hide">
+<img id="resultImg">
+<h2 id="resultTitle"></h2>
+<p id="resultText"></p>
+<button onclick="copyText()">复制回答</button>
+</div>
+</div>
+</div>
+
+<script>
+let result='';
+function go(n){
+document.querySelectorAll('.card>div').forEach(x=>x.classList.add('hide'));
+document.getElementById('page'+n).classList.remove('hide');
+}
+function answer(title,img){
+result='我的回答：'+title;
+document.getElementById('resultImg').src=img;
+document.getElementById('resultTitle').innerText=title;
+document.getElementById('resultText').innerText=result;
+go(3);
+}
+function copyText(){
+navigator.clipboard.writeText(result);
+alert('已复制');
+}
+</script>
+</body>
+</html>
